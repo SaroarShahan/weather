@@ -66,9 +66,6 @@ const WeatherContainer = () => {
   };
 
   const handleWeather = ({ cityName, countryName }) => {
-    console.log(cityName);
-    console.log(countryName);
-
     if (!cityName) {
       toast.error("City and Country field should not be empty!");
       return;
@@ -93,6 +90,8 @@ const WeatherContainer = () => {
         setIsLoading(false);
       })
       .catch(err => {
+        toast.error("City not found!");
+
         setIsLoading(false);
       });
   };
