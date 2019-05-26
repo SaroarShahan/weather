@@ -13,6 +13,7 @@
     "react-toastify": "^5.1.1",
     "styled-components": "^4.2.0"
   },
+  "homepage": "https://saroarshahan.github.io/reactweather",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

@@ -17,12 +17,14 @@ const Form = ({ getWeather, isLoading }) => {
       <input
         type="text"
         name="city"
+        value={cityName}
         placeholder="City name..."
         onChange={e => setCityName(e.target.value)}
       />
       <input
         type="text"
         name="country"
+        value={countryName}
         placeholder="Country name..."
         onChange={e => setountryName(e.target.value)}
       />

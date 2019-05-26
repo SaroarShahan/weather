@@ -27,16 +27,24 @@ const WeatherContainer = () => {
 
     axios.get(geoAPI).then(res => {
       if (res.status === 200) {
-        let cityName = res.data.results[0].address_components[2].long_name;
-        let countryName = res.data.results[7].address_components[0].long_name;
+        let api = "";
+        let cityName =
+          res.data.results.lenght >= 0
+            ? res.data.results[0].address_components[2].long_name
+            : null;
+        let countryName =
+          res.data.results.lenght >= 0
+            ? res.data.results[7].address_components[0].long_name
+            : null;
 
-        let api = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryName}&appid=${API_URL}&units=metric`;
+        if (cityName && countryName) {
+          api = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryName}&appid=${API_URL}&units=metric`;
+        }
 
         callAPIAfterFiveMinute(api);
 
         setInterval(() => {
           callAPIAfterFiveMinute(api);
-          console.log("called");
         }, 300000);
       }
     });
@@ -58,6 +66,9 @@ const WeatherContainer = () => {
   };
 
   const handleWeather = ({ cityName, countryName }) => {
+    console.log(cityName);
+    console.log(countryName);
+
     if (!cityName) {
       toast.error("City and Country field should not be empty!");
       return;
