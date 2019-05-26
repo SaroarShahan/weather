@@ -1,0 +1,18 @@
+.weather__key {
+  color: #e67e22;
+  border-bottom: dashed 0.2rem rgba(255, 255, 255, 0.06);
+  padding: 0.6rem 0;
+  font-weight: 400;
+  letter-spacing: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather__key:last-child {
+  border: 0;
+}
+
+.weather__value {
+  color: #fff;
+  font-weight: 400;
+  margin-left: 0.5rem;
+}
