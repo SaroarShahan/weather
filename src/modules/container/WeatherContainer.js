@@ -23,31 +23,15 @@ const WeatherContainer = () => {
     var lat = pos.coords.latitude;
     var lng = pos.coords.longitude;
 
-    let geoAPI = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCgQs71zWRYkIHoiCl2Lejbsno12zv9qwA`;
+    if (lat && lng) {
+      let api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_URL}&units=metric`;
 
-    axios.get(geoAPI).then(res => {
-      if (res.status === 200) {
-        let api = "";
-        let cityName =
-          res.data.results.lenght >= 0
-            ? res.data.results[0].address_components[2].long_name
-            : null;
-        let countryName =
-          res.data.results.lenght >= 0
-            ? res.data.results[7].address_components[0].long_name
-            : null;
+      callAPIAfterFiveMinute(api);
 
-        if (cityName && countryName) {
-          api = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryName}&appid=${API_URL}&units=metric`;
-        }
-
+      setInterval(() => {
         callAPIAfterFiveMinute(api);
-
-        setInterval(() => {
-          callAPIAfterFiveMinute(api);
-        }, 300000);
-      }
-    });
+      }, 300000);
+    }
   };
 
   const callAPIAfterFiveMinute = api => {
